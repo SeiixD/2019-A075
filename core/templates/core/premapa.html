@@ -1,0 +1,100 @@
+{% extends "core/base2.html" %}
+{% load static %}
+{% block contenido %}
+<div class="container">
+    <div class="row project">  	
+                <div class="col-lg-12 col-md-12">
+                    <h5 class="section-heading">Seleccione la fuente de datos a consultar</h5>   
+                </div>
+    </div>
+    <div class="row project"> 
+    <form style="position: relative;" action="{% url 'mapa' %}" method="post" >
+    {% csrf_token %}
+                <div class="col-lg-7 col-md-8" style="float: left;">
+                <h5 class="section-heading">Ubicación inicial</h5>
+                <input type="hidden" id="hidlat" name="latitud">
+                <input type="hidden" id="hidlng" name="longitud">
+                   <div id="mapId" style="width: 500px; height: 500px;">
+                   	
+                    <script>
+                        var latpost = 19.6058;
+                        var lngpost = -99.0428;
+                        document.getElementById('hidlat').value = latpost;
+                        document.getElementById('hidlng').value = lngpost;
+                        var mymap = L.map('mapId').setView([19.6058, -99.0428], 14);
+                        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+                        tap: false,
+                        minZoom: 13,
+                        attribution: 'Mapas &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>, ' +
+                                    '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                                    'Escuela Superior de Cómputo 2020',
+                        id: 'mapbox/streets-v11',
+                        tileSize: 512,
+                        zoomOffset: -1
+                            }).addTo(mymap);
+
+                        var greenIcon = new L.Icon({
+                        iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+                        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                        iconSize: [25, 41],
+                        iconAnchor: [12, 41],
+                        popupAnchor: [1, -34],
+                        shadowSize: [41, 41]
+                        });
+                        var marker3 = L.marker([19.6058, -99.0435],{icon: greenIcon}).addTo(mymap);
+                        //Capturar información de la ubicación
+                        mymap.on('click', function(e) {
+                            marker3.remove();
+                            marker3 = L.marker([e.latlng.lat, e.latlng.lng],{icon: greenIcon});
+                            document.getElementById('hidlat').value = e.latlng.lat;
+                            document.getElementById('hidlng').value = e.latlng.lng;
+                            marker3.addTo(mymap);
+                        });
+
+                    </script>
+                    <script>
+                    function veropcion(){
+                        if(document.getElementById("datab").checked==true)
+                        {
+                            document.getElementById("seldelito").selectedIndex = "0";
+                            document.getElementById("optvio").style.display= "block";
+                            document.getElementById("optasa").style.display= "block" ;
+                            document.getElementById("optdan").style.display= "block" ;
+                            document.getElementById("optfem").style.display= "none" ;
+                        }
+                        else if(document.getElementById("datno").checked)
+                        {
+                            document.getElementById("seldelito").selectedIndex = "0";
+                            document.getElementById("optvio").style.display= "none" ;
+                            document.getElementById("optasa").style.display= "none";
+                            document.getElementById("optdan").style.display= "none";
+                            document.getElementById("optfem").style.display= "block";
+                        }
+                    }
+                    </script>
+                   </div>
+                   <!-- <img class="img-fluid" src="{% static 'core/img/mapa.jpg' %}" alt="">-->
+                </div>
+                <div class="col-lg-3 col-md-2" style="float: left;">
+                    <h5 class="section-heading">Fuente</h5> 
+                    <input id="datab" name="Datos" type="radio" value="1" onclick="veropcion()" > Datos Abiertos <br>
+                    <input id="datno" name="Datos" type="radio" value="2" onclick="veropcion()"> Medios digitales <br>
+                </div>
+                <div class="col-lg-3 col-md-2" style="float: left;">
+                <h5 class="section-heading">Delitos</h5> 
+                    <select id="seldelito" name="Delito">
+                        <option id="optdef" value="0" style="display:none"> Seleccione una opción </option>
+                        <option id="optvio" value="2" style=""> Violación </option>
+                        <option id="optasa" value="3" style=""> Asalto con violencia </option>
+                        <option id="optdan" value="1" style=""> Violencia contra la mujer </option>
+                        <option id="optfem" value="4" style=""> Feminicidio  </option>
+                    </select> 
+                    <br>
+                    <br>
+                    <input type="submit" name="Enviar" value="Consultar">  
+                </div>
+    </form>
+    </div>
+    
+</div>
+{% endblock %}

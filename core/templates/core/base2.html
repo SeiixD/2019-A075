@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Prototipo indicador para el nivel de riesgo por actividad delicitiva orientado a mujeres en el municipio de Ecatepec</title>
+
+    <!-- Estilos y fuentes  -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+    <script src="{% static 'core/heatmap.js' %}"></script>
+    <script src="{% static 'core/leaflet-heatmap.js' %}"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+    <link href="{% static 'core/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'core/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="{% static 'core/css/clean-blog.min.css' %}" rel="stylesheet">
+    <script src="{% static 'core/chart/Chart.min.js' %}"></script>
+    <script src="{% static 'core/chart/utils.js' %}"></script>
+
+  </head>
+
+  <body>
+
+    <!-- Navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand" style="color: black;" href="{%url 'home'%}">Inicio</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menú
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" style="color: black;" href="{%url 'premapa'%}">Mapa delictivo</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" style="color: black;" href="{%url 'dashboard'%}">Dashboard</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+	<br>
+    <!-- Cuerpo -->
+    {% block contenido %}{%endblock%}
+
+    <!-- Pié de página -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <ul class="list-inline text-center">
+              <li class="list-inline-item">
+                <a href="#">
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                </a>
+              </li>
+            </ul>
+            <p class="copyright text-muted">2020 &copy; Escuela Superior de Cómputo </p>
+            <p class="copyright text-muted">Hernández Bolaños Jonathan | Jímenez Montes Dennise </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap y Javascripts -->
+    <script src="{% static 'core/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'core/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'core/js/clean-blog.min.js' %}"></script>
+
+  </body>
+
+</html>

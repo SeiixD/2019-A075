@@ -1,0 +1,496 @@
+{% extends "core/base2.html" %}
+{% load static %}
+{% block contenido %}
+<!--Grafica Violencia contra la mujer-->
+<script>
+    var G1Col = [];
+    var G1Val = [];
+    var G1Del = "Violencia contra la mujer";
+    var i = 0;
+
+    //Recibe datos de la base para Chart1
+    {% for xData in Chart1 %}
+    if(i>1){
+        G1Col.push('{{xData.Colonia}}');
+        G1Val.push({{xData.Sumatoria}});
+
+    }
+        i = i+1;
+    {%endfor%}
+            var config = {
+                type: 'pie',
+                data: {
+                    datasets: [{
+                        
+                        data: [
+                            G1Val[0],
+                            G1Val[1],
+                            G1Val[2],
+                            G1Val[3],
+                            G1Val[4],
+                            G1Val[5],
+                            G1Val[6]
+                        ],
+                        backgroundColor: [
+                            window.chartColors.red,
+                            window.chartColors.orange,
+                            window.chartColors.yellow,
+                            window.chartColors.green,
+                            window.chartColors.blue,
+                               window.chartColors.red,
+                            window.chartColors.orange
+                        ],
+                        
+                        label: G1Del
+                    }],
+                    labels: [
+                            G1Col[0],
+                            G1Col[1],
+                            G1Col[2],
+                            G1Col[3],
+                            G1Col[4],
+                            G1Col[5],
+                            G1Col[6]
+                    ]
+                },
+                options: {
+                    responsive: true
+                }
+            };
+
+    //Carga Graficas
+    window.onload = function() {
+                var ctx = document.getElementById('chart-area1').getContext('2d');
+                window.myPie = new Chart(ctx, config);
+                var ctx7 = document.getElementById('chart-area7').getContext('2d');
+                window.myLine = new Chart(ctx7, config7);
+                var ctx4 = document.getElementById('chart-area4').getContext('2d');
+                window.myBar = new Chart(ctx4, {
+                    type: 'bar',
+                    scaleOverride : true,
+                    
+                    data: barChartData2,
+                    options: {
+                        responsive: true,
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: false
+                        }
+                    }
+                });
+                var ctx2 = document.getElementById('chart-area2').getContext('2d');
+                window.myPie = new Chart(ctx2, config2);
+                var ctx6 = document.getElementById('chart-area6').getContext('2d');
+                window.myPie = new Chart(ctx6, config6);
+                var ctx3 = document.getElementById('chart-area3').getContext('2d');
+                window.myBar = new Chart(ctx3, {
+                    type: 'bar',
+                    scaleOverride : true,
+                    
+                    data: barChartData,
+                    options: {
+                        responsive: true,
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: false
+                        }
+                    }
+                });
+                
+            };
+
+</script>
+<!--Grafica Asalto con violencia-->
+<script>
+    var G2Col = [];
+    var G2Val = [];
+    var G2Del = "Asalto con violencia";
+    var i = 0;
+
+    //Recibe datos de la base para Chart2
+    {% for xData2 in Chart2 %}
+    if(i>1){
+        G2Col.push('{{xData2.Colonia}}');
+        G2Val.push({{xData2.Sumatoria}});
+
+    }
+        i = i+1;
+    {%endfor%}
+            var config2 = {
+                type: 'pie',
+                data: {
+                    datasets: [{
+                        data: [
+                            G2Val[0],
+                            G2Val[1],
+                            G2Val[2],
+                            G2Val[3],
+                            G2Val[4],
+                            G2Val[5],
+                            G2Val[6]
+                        ],
+                        backgroundColor: [
+                            '#B63E3C',
+                            '#8E3B3D',
+                            '#66393E',
+                            '#3E363F',
+                            '#9F9994',
+                            '#FFFCE8',
+                            '#B4BB85'
+                        ],
+                        label: G2Del
+                    }],
+                    labels: [
+                            G2Col[0],
+                            G2Col[1],
+                            G2Col[2],
+                            G2Col[3],
+                            G2Col[4],
+                            G2Col[5],
+                            G2Col[6]
+                    ]
+                },
+                options: {
+                    responsive: true
+                }
+            };
+
+</script>
+<!--Recibe datos de la base para Chart6-->
+<script>
+    var G6Col = [];
+    var G6Val = [];
+    var G6Del = "Asalto con violencia";
+    var i6 = 0;
+
+    //Recibe datos de la base para Chart2
+    {% for xData6 in Chart6 %}
+    if(i6>1){
+        G6Col.push('{{xData6.Colonia}}');
+        G6Val.push({{xData6.Sumatoria}});
+
+    }
+        i6 = i6+1;
+    {%endfor%}
+            var config6 = {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [
+                            G6Val[0],
+                            G6Val[1],
+                            G6Val[2],
+                            G6Val[3],
+                            G6Val[4],
+                            G6Val[5],
+                            G6Val[6]
+                        ],
+                        backgroundColor: [
+                            '#B63E3C',
+                            '#8E3B3D',
+                            '#66393E',
+                            '#3E363F',
+                            '#9F9994',
+                            '#FFFCE8',
+                            '#B4BB85'
+                        ],
+                        label: G6Del
+                    }],
+                    labels: [
+                            G6Col[0],
+                            G6Col[1],
+                            G6Col[2],
+                            G6Col[3],
+                            G6Col[4],
+                            G6Col[5],
+                            G6Col[6]
+                    ]
+                },
+                options: {
+                    responsive: true
+                }
+            };
+
+</script>
+<!--Grafica del día más inseguro DatosAbiertos-->
+<script>
+    var i3 = 0;
+    var G3Dia = [];
+    var G3Val = [];
+    var G3Mas;
+    {% for xData3 in Chart3 %}
+        G3Dia.push('{{xData3.Dia}}');
+        if(i3==0)
+        {
+            G3Mas ='{{xData3.Dia}}';
+        }
+        G3Val.push({{xData3.Total}});
+        i3=i3+1;
+    {%endfor%}
+
+		var color = Chart.helpers.color;
+		var barChartData = {
+			labels: [G3Dia[0], G3Dia[1], G3Dia[2], G3Dia[3], G3Dia[4], G3Dia[5], G3Dia[6],'' ],
+			datasets: [{
+				label: 'Delitos por día',
+				backgroundColor: color(window.chartColors.green).alpha(0.5).rgbString(),
+				borderColor: window.chartColors.green,
+				borderWidth: 1,
+				data: [
+                    
+					G3Val[0],
+					G3Val[1],
+					G3Val[2],
+					G3Val[3],
+					G3Val[4],
+					G3Val[5],
+					G3Val[6],
+                    50
+				]
+			}]
+
+		};
+    
+</script>
+<!--Grafica del día más inseguro Noticias-->
+<script>
+    var i4 = 0;
+    var G4Dia = [];
+    var G4Val = [];
+    var G4Mas;
+    {% for xData4 in Chart4 %}
+        G4Dia.push('{{xData4.Dia}}');
+        if(i4==0)
+        {
+            G4Mas ='{{xData4.Dia}}';
+        }
+        G4Val.push({{xData4.Total}});
+        i4=i4+1;
+    {%endfor%}
+
+		var color = Chart.helpers.color;
+		var barChartData2 = {
+			labels: [G4Dia[0], G4Dia[1], G4Dia[2], G4Dia[3], G4Dia[4], G4Dia[5], G4Dia[6],'' ],
+			datasets: [{
+				label: 'Delitos por día',
+				backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+				borderColor: window.chartColors.red,
+				borderWidth: 1,
+				data: [
+                    
+					G4Val[0],
+					G4Val[1],
+					G4Val[2],
+					G4Val[3],
+					G4Val[4],
+					G4Val[5],
+					G4Val[6],
+                    10
+				]
+			}]
+
+		};
+    
+</script>
+<!-- Nube de tags -->
+<script>
+                        anychart.onDocumentReady(function() {
+                            var data5 = [
+                                {% for xData5 in Chart5 %}
+                                {"x": '{{xData5.Palabra}}', "value": {{xData5.Conteo}} },
+                                {%endfor%}
+                                {"x": "Jimena", "value": 1}
+                            ];
+                            // create a tag (word) cloud chart
+                            var chart5 = anychart.tagCloud(data5);
+                            // set a chart title
+                            //chart5.title('Palabras recurrentes')
+                            // set an array of angles at which the words will be laid out
+                            chart5.angles([0])
+                            // enable a color range
+                            //chart5.colorRange(true);
+                            // set the color range length
+                            chart5.colorRange().length('80%');
+                            // display the word cloud chart
+                            chart5.container("nube");
+                            chart5.draw();
+                            });
+</script>
+<!-- Grafico Meses inseguros en 2019 -->
+<script>
+        var G7Mes = [];
+        var G7Tot = [];
+        {% for xData in Chart7 %}
+        if('{{xData.Municipio}}'!=null){
+            if('{{xData.Mes}}'!=null){
+                if('{{xData.Ano}}'!=null){
+                    if('{{xData.Total}}'!=null){
+                        G7Mes.push('{{xData.Mes}}');
+                        G7Tot.push({{xData.Total}});
+                  }
+               }
+           }
+        }
+        {%endfor%}
+		var config7 = {
+			type: 'line',
+			data: {
+				labels: [G7Mes[0], G7Mes[1], G7Mes[2], G7Mes[3], G7Mes[4], G7Mes[5], G7Mes[6], G7Mes[7], G7Mes[8], G7Mes[9], G7Mes[10], G7Mes[11]],
+				datasets: [{
+					label: 'Feminicidios por mes',
+					backgroundColor: window.chartColors.red,
+					borderColor: window.chartColors.red,
+					data: [G7Tot[0], G7Tot[1], G7Tot[2], G7Tot[3], G7Tot[4], G7Tot[5], G7Tot[6], G7Tot[7], G7Tot[8], G7Tot[9], G7Tot[10], G7Tot[11]],
+					fill: false,
+				}]
+			},
+			options: {
+				responsive: true,
+				title: {
+					display: true
+				},
+				tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+				scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Month'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Value'
+						}
+					}]
+				}
+			}
+		};
+</script>
+
+<!--HTML Cuerpo-->
+<div class="container">
+    <div class="row project">  	
+                <div class="col-lg-12 col-md-12" style="text-align: center;">
+                    <h1 class="section-heading">Dashboard</h1> 
+                    <p>A partir de los datos recopilados, este tablero de reportes permite visualizar la información procesada</p>  
+                </div>
+    </div>  
+    <div class="row project">  	
+                <div class="col-lg-6 col-md-12" style="text-align: center; background-color:#fff; px;box-shadow: 3px 3px 8px #888888;">
+                <h4>Dias más peligrosos de la semana (Violencia de género)</h4><br>
+                <canvas id="chart-area3"></canvas>
+                </div>
+
+                <div class="col-lg-6 col-md-12" style="text-align: center; background-color:#fff; px;box-shadow: 3px 3px 8px #888888;">
+                <h4>Dias más peligrosos de la semana (Feminicidios)</h4><br>
+                <canvas id="chart-area4"></canvas>
+                </div>
+                
+    </div>
+    <div class="row project">  	
+                <div class="col-lg-12 col-md-12" style="text-align: center; height:600px; background-color:#fff; px;box-shadow: 3px 3px 8px #888888;">
+                <h4>Palabras más comunes en noticias digitales</h4><br>
+                    <div id="nube" style="height:500px;"></div>
+                </div>
+    </div>
+    <div class="row project">  	
+                <div class="col-lg-6 col-md-12" style="text-align: center;background-color:#f0f0f0; box-shadow: 3px 3px 8px #888888;">
+                <h4>Colonias con más violencia contra la mujer en Ecatepec</h4>
+                <br>
+                <canvas id="chart-area1"></canvas>
+                <br>
+                </div>
+                <div class="col-lg-6 col-md-12" style="text-align: center;background-color:#f0f0f0; box-shadow: 3px 3px 8px #888888;">
+                <h4>Colonias con más asaltos violentos en Ecatepec</h4>
+                <br>
+                <canvas id="chart-area2"></canvas>
+                <br>
+                </div>
+    </div>
+    <div class="row project">  	
+                <div class="col-lg-6 col-md-12" style="text-align: center;background-color:#f0f0f0; box-shadow: 3px 3px 8px #888888;">
+                <h4>Colonias con más Feminicidios en Ecatepec</h4>
+                <br>
+                <canvas id="chart-area6"></canvas>
+                <br>
+                </div>
+                <div class="col-lg-6 col-md-12" style="text-align: center;background-color:#f0f0f0; box-shadow: 3px 3px 8px #888888;">
+                <h4>Mes más inseguro de 2019</h4>
+                <br>
+                <canvas id="chart-area7"></canvas>
+                <br>
+                </div>
+                
+                
+    </div>
+    <div class="row project">  
+        <div class="col-lg-12 col-md-12" style="text-align: center;background-color:#f0f0f0; box-shadow: 3px 3px 8px #888888;">
+                <h4>Mapa de calor de puntos violentos en Ecatepec</h4>
+                <br>
+                <div id="mapId" style=" height: 400px; box-shadow: 3px 3px 8px #888888; margin: 0 auto;">
+                    <!--Script mapa de calor-->
+                    <script>
+                        var testData = {
+                        //max: 8,
+                        data: [
+                            {% for datadisplay in DelitoAbierto %}
+                            {lat: parseFloat('{{datadisplay.Latitud}}'.replace(/,/g, '.')) , lng: parseFloat('{{datadisplay.Longitud}}'.replace(/,/g, '.')), count: 1},
+                            {% endfor %}
+                            ]
+                        };
+
+                            var baseLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',{
+                            attribution: 'Mapas &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>, ' +
+                                        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                                        'Escuela Superior de Cómputo 2020',
+                            id: 'mapbox/streets-v11',
+                            tileSize: 512,
+                            zoomOffset: -1
+                                });
+
+                            var cfg = {
+                            // radius should be small ONLY if scaleRadius is true (or small radius is intended)
+                            // if scaleRadius is false it will be the constant radius used in pixels
+                            "radius": .0013,
+                            "maxOpacity": .6,
+                            // scales the radius based on map zoom
+                            "scaleRadius": true,
+                            // if set to false the heatmap uses the global maximum for colorization
+                            // if activated: uses the data maximum within the current map boundaries
+                            //   (there will always be a red spot with useLocalExtremas true)
+                            "useLocalExtrema": true,
+                            // which field name in your data represents the latitude - default "lat"
+                            latField: 'lat',
+                            // which field name in your data represents the longitude - default "lng"
+                            lngField: 'lng',
+                            // which field name in your data represents the data value - default "value"
+                            valueField: 'count'
+                            };
+                            var heatmapLayer = new HeatmapOverlay(cfg);
+                            var map = new L.Map('mapId', {
+                            center: new L.LatLng(19.6058, -99.04),
+                            zoom: 12,
+                            layers: [baseLayer, heatmapLayer]
+                            });
+                            heatmapLayer.setData(testData);
+                    </script>
+                </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

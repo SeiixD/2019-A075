@@ -1,0 +1,12 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block contenido %}
+<div class="container">
+
+<h1>Hola xD</h1>
+{% for datadisplay in DelitoAbierto %}
+    <li>{{ datadisplay.Latitud }} , {{ datadisplay.Longitud }}</li>
+{% endfor %}
+
+</div>
+{% endblock %}
